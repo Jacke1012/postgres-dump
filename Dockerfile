@@ -1,5 +1,5 @@
 # Small image with pg_dump included
-FROM postgres:16-alpine
+FROM postgres:18-alpine
 
 # Optional: tini for clean signals (Ctrl+C / docker stop)
 RUN apk add --no-cache tini
