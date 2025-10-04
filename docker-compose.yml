@@ -1,0 +1,23 @@
+services:
+  pgdump:
+    build: .
+    environment:
+      # Choose either PGURI OR the individual PG* vars below:
+      # PGURI: "postgres://user:pass@db.example.com:5432/mydb?sslmode=require"
+
+      PGHOST: "db"         # or "127.0.0.1" or remote host
+      PGPORT: "5432"
+      PGUSER: "postgres"
+      PGPASSWORD: "changeme"  # better: use a secret or env file
+      PGDATABASE: "mydb"
+      PGSSLMODE: "disable"    # or "require"
+      DUMP_FORMAT: "plain"     # plain|custom|directory|tar
+      EXTRA_ARGS: "--no-owner --no-privileges"
+    volumes:
+      - ./backups:/backup
+    # If dumping a DB that runs in another compose service named "db", ensure networks align
+    # networks:
+    #   - mynet
+# networks:
+#   mynet:
+#     external: true
